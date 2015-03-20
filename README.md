@@ -1,4 +1,4 @@
-# Jdo Util Wrapper
+# Jdo Utility Wrapper
 An simple wrapper for AppEngine datastore operations using JDO. Its not built in any intention to replace anything, writing some many line repeatedly for soame operations is really pain, So this library just wraps most frequently used jdo operations in simple one line method call. Use it if you find it useful.
 
 ## Features
@@ -71,5 +71,15 @@ User user = JdoUtil.loader().get(User.class, 123);
 // by key (Key object)
 Key key = KeyFactory.createKey(parent, User.class, "user@abc.com");
 User user = JdoUtil.loader().get(User.class, key);
+```
+
+##### Get Multiple Objects By Ids 
+
+```Java
+Set<String> keys = new HashSet<String>();
+keys.add("user@abc.com");
+keys.add("user2@abc.com");
+
+List<User> users = JdoUtil.loader().getMuti(User.class, keys );
 ```
 yet to add more examples, but you can place around with the jar!
