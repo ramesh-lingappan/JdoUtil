@@ -65,3 +65,4 @@ User user = loader.get(User.class, 123);
 Key key = KeyFactory.createKey(parent, User.class, "user@abc.com");
 User user = loader.get(User.class, key);
 ```
+yet to add more examples, but you can place around with the jar!
