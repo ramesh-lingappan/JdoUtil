@@ -18,7 +18,14 @@ An simple wrapper for AppEngine datastore operations using JDO. Its not built in
 
 ##### Persistence Manager
 
-if you dont specify an default persistence manager factory will be created with name **"transactions-optional"** (assuming it is defined in **jdoconfig.xml** file)
+if you dont specify an default persistence manager factory will be created with name **"transactions-optional"** (assuming it is defined in **jdoconfig.xml** file) like below
+```xml
+<persistence-manager-factory name="transactions-optional">
+...
+ </persistence-manager-factory>
+ ```
+
+
 ```Java
 // you dont need to create this if you are default like above
 JdoServiceFactory factory = new JdoServiceFactory();
@@ -63,6 +70,7 @@ loader.get(User.class,"user@abc.com");
 
 ```Java
 // by name (string)
+// dont worry all returned as detached
 User user = JdoUtil.loader().get(User.class, "user@abc.com");
 
 // by id (long)
@@ -80,6 +88,6 @@ Set<String> keys = new HashSet<String>();
 keys.add("user@abc.com");
 keys.add("user2@abc.com");
 
-List<User> users = JdoUtil.loader().getMuti(User.class, keys );
+List<User> users = JdoUtil.loader().getMuti(User.class, keys);
 ```
 yet to add more examples, but you can place around with the jar!
