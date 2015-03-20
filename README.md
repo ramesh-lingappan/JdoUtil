@@ -7,6 +7,7 @@ An simple wrapper for AppEngine datastore operations using JDO. Its not built in
 - Type inferred method
 - Easy Query Builder
 - Independent componets, so you can split up as u need 
+- Libray is 15KB sized
 
 ## How to Download ?
 
