@@ -127,8 +127,67 @@ boolean deleted = JdoUtil.loader().deleteAll(users);
 
 ##### Delete Entities by Query
 ```Java
-long deletedCount = JdoUtil.loader().deleteByQuery(User.class,"shouldDelete = true");
+long deletedCount = JdoUtil.loader().deleteByQuery(User.class,"shouldDelete == true");
 ```
 
+### Fetch Operations 
 
-yet to add more examples, but you can place around with the jar!
+##### Fetch Single Entity By Query 
+```Java
+User user = JdoUtil.loader().fetchByQuery(User.class, "email == 'user@abc.com' && status == 'active' ");
+```
+
+##### Fetch Entities by Query
+```Java
+List<User> users = JdoUtil.loader().fetchMultiByQuery(User.class, "status == 'active'");
+```
+
+##### Fetch Entities by Contains Query
+return list of entitties whos property value is contained in the specified list
+```Java
+List<User> users = JdoUtil.loader().fetchByContainsQuery(User.class, "accountKey", acctKeys);
+```
+
+##### Fetch Entity Key only by Query
+fetchs only entity key
+```Java
+String key = (String) JdoUtil.loader().fetchKeyByQuery(User.class, "key", "email == 'user@abc.com'");
+```
+
+##### Fetch Entities Keys by Query
+fetchs all entities keys which matchs the query 
+```Java
+List<String> keys = JdoUtil.loader().fetchKeysByQuery(User.class, "key", String.class, "status == 'active'");
+```
+### Query Builder 
+Finally if you want more control over querying, you can use the QueryBuilder class to build and execute query like below, 
+
+```Java
+QueryBuilder<User> builder = JdoUtil.queryBuilder(User.class)
+				.setFilter("email == 'user@abc.com'")
+				.andFilter("status == 'active' ")
+				.orFilter("status == 'pending' ")
+				.keyOnly("key")
+				.cursorString("cursor returned during previous fetch")
+				.needCursor()
+				.setEndRange(20)
+				.sortDesc("dateAdded");
+				
+// get full query string 
+String query = builder.getFullQuery();
+		
+// get where clause 
+String whereClause = builder.getWhereFilters();
+		
+// or execute directly 
+QueryResult<User> result = JdoUtil.loader().executeQuery(builder);
+		
+// get returned entities 
+result.getResult();
+
+// if key only query, can get keys like below
+result.getKeys();
+		
+// returns cursor string , if needCursor() is specified in query builder
+result.getCursorStr();
+```
