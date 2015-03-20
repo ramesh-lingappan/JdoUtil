@@ -91,4 +91,29 @@ keys.add("user2@abc.com");
 
 List<User> users = JdoUtil.loader().getMuti(User.class, keys);
 ```
+
+##### Save an Entity 
+
+```Java
+// returns detached version of entity
+User user = JdoUtil.loader().persist(user);
+```
+
+##### Save Multiple Entities 
+```Java
+
+	Collection<User> users; // list of entities to be save
+	List<User> user = (List<User>) JdoUtil.loader().persistAll(users);
+```
+
+### Delete an Entity
+```Java
+boolean deleted = JdoUtil.loader().delete(user);
+```
+
+### Delete by Entity Key
+```Java
+boolean deleted = JdoUtil.loader().delete(User.class,"user@abc.com");
+```
+
 yet to add more examples, but you can place around with the jar!
