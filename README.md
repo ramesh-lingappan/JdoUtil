@@ -18,7 +18,7 @@ An simple wrapper for AppEngine datastore operations using JDO. Its not built in
 
 ##### Persistence Manager
 
-if you dont specify an default persistence manager factory will be created with name **"transactions-optional"** (assuming it is defined in **jdoconfig.xml** file) like below
+if you dont specify an PersistenceManagerFactory, a default PersistenceManagerFactory  will be created with name **"transactions-optional"** (assuming it is defined in **jdoconfig.xml** file) like below
 ```xml
 <persistence-manager-factory name="transactions-optional">
 ...
