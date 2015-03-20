@@ -52,6 +52,13 @@ JdoService service = JdoUtil.service();
 
 ## JDO Operations 
 
+##### Jdo Query Service 
+Use query serivce either using JdoUtil or by new instance;
+```Java
+JdoQueryService loader = JdoUtil.loader();
+loader.get(User.class,"user@abc.com");
+```
+
 ##### Get Object by Id 
 
 ```Java
