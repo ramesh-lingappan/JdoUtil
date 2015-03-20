@@ -67,6 +67,8 @@ JdoQueryService loader = JdoUtil.loader();
 loader.get(User.class,"user@abc.com");
 ```
 
+### Get Operations
+
 ##### Get Object by Id 
 
 ```Java
@@ -91,6 +93,7 @@ keys.add("user2@abc.com");
 
 List<User> users = JdoUtil.loader().getMuti(User.class, keys);
 ```
+### Save Operations
 
 ##### Save an Entity 
 
@@ -105,15 +108,27 @@ User user = JdoUtil.loader().persist(user);
 	Collection<User> users; // list of entities to be save
 	List<User> user = (List<User>) JdoUtil.loader().persistAll(users);
 ```
+### Delete Operations
 
-### Delete an Entity
+##### Delete an Entity
 ```Java
 boolean deleted = JdoUtil.loader().delete(user);
 ```
 
-### Delete by Entity Key
+##### Delete Entity by Key
 ```Java
 boolean deleted = JdoUtil.loader().delete(User.class,"user@abc.com");
 ```
+
+##### Delete Entities by Keys
+```Java
+boolean deleted = JdoUtil.loader().deleteAll(users);
+```
+
+##### Delete Entities by Query
+```Java
+long deletedCount = JdoUtil.loader().deleteByQuery(User.class,"shouldDelete = true");
+```
+
 
 yet to add more examples, but you can place around with the jar!
