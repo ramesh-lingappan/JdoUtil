@@ -56,13 +56,13 @@ JdoService service = JdoUtil.service();
 
 ```Java
 // by name (string)
-User user = loader.get(User.class, "user@abc.com");
+User user = JdoUtil.loader().get(User.class, "user@abc.com");
 
 // by id (long)
-User user = loader.get(User.class, 123);
+User user = JdoUtil.loader().get(User.class, 123);
 
 // by key (Key object)
 Key key = KeyFactory.createKey(parent, User.class, "user@abc.com");
-User user = loader.get(User.class, key);
+User user = JdoUtil.loader().get(User.class, key);
 ```
 yet to add more examples, but you can place around with the jar!
