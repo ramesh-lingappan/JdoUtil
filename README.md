@@ -14,7 +14,7 @@ if you are starting new project, please use [Objectify](https://code.google.com/
 
 ## How to Download ?
 
-- currently you can manually download the jar file here [JdoUtil-0.0.1.jar](https://github.com/ramesh-dev/JdoUtil/blob/master/src/dist/JdoUtil-0.0.1.jar)
+- currently you can manually download the jar file here [Download Jar File](https://github.com/ramesh-dev/JdoUtil/tree/master/src/dist)
 - will update to maven central repo soon!
 
 
@@ -63,14 +63,56 @@ JdoService service = JdoUtil.service();
 
 ## JDO Operations 
 
-##### Jdo Query Service 
-Use query serivce either using JdoUtil or by new instance;
+##### CRUD services 
+you can use individual serivce either using JdoUtil or JdoService;
 ```Java
-JdoQueryService loader = JdoUtil.loader();
-loader.get(User.class,"user@abc.com");
+JdoLoader loader = JdoUtil.loader();
+
+// enable or disable cache
+JdoSaver saver = JdoUtil.saver(true);
+
+JdoDeleter deleter = JdoUtil.deleter();
 ```
 
-### Get Operations
+## Save Operations
+
+##### Save an Entity 
+
+```Java
+// returns detached version of entity
+User user = JdoUtil.saver().persist(user);
+```
+
+##### Save Multiple Entities 
+
+```Java
+Collection<User> users; // list of entities to be save
+List<User> user = (List<User>) JdoUtil.saver().persistAll(users);
+```
+## Delete Operations
+
+##### Delete an Entity
+```Java
+boolean deleted = JdoUtil.deleter().delete(user);
+```
+
+##### Delete Entity by Key
+```Java
+boolean deleted = JdoUtil.deleter().delete(User.class,"user@abc.com");
+```
+
+##### Delete Entities by Keys
+```Java
+boolean deleted = JdoUtil.deleter().deleteAll(users);
+```
+
+##### Delete Entities by Query
+```Java
+long deletedCount = JdoUtil.deleter().deleteByQuery(User.class,"shouldDelete == true");
+```
+### Loader Operations
+
+#### Get Operations
 
 ##### Get Object by Id 
 
@@ -96,44 +138,8 @@ keys.add("user2@abc.com");
 
 List<User> users = JdoUtil.loader().getMuti(User.class, keys);
 ```
-### Save Operations
 
-##### Save an Entity 
-
-```Java
-// returns detached version of entity
-User user = JdoUtil.loader().persist(user);
-```
-
-##### Save Multiple Entities 
-```Java
-
-	Collection<User> users; // list of entities to be save
-	List<User> user = (List<User>) JdoUtil.loader().persistAll(users);
-```
-### Delete Operations
-
-##### Delete an Entity
-```Java
-boolean deleted = JdoUtil.loader().delete(user);
-```
-
-##### Delete Entity by Key
-```Java
-boolean deleted = JdoUtil.loader().delete(User.class,"user@abc.com");
-```
-
-##### Delete Entities by Keys
-```Java
-boolean deleted = JdoUtil.loader().deleteAll(users);
-```
-
-##### Delete Entities by Query
-```Java
-long deletedCount = JdoUtil.loader().deleteByQuery(User.class,"shouldDelete == true");
-```
-
-### Fetch Operations 
+#### Fetch Operations 
 
 ##### Fetch Single Entity By Query 
 ```Java
