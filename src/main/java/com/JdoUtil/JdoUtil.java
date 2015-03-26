@@ -5,7 +5,9 @@ package com.JdoUtil;
 
 import com.JdoUtil.services.JdoService;
 import com.JdoUtil.services.JdoServiceFactory;
-import com.JdoUtil.services.query.JdoQueryService;
+import com.JdoUtil.services.cmd.JdoDeleter;
+import com.JdoUtil.services.cmd.JdoLoader;
+import com.JdoUtil.services.cmd.JdoSaver;
 import com.JdoUtil.services.query.QueryBuilder;
 
 /**
@@ -17,7 +19,7 @@ public class JdoUtil {
 	private static JdoService _jdoService;
 
 	/** The _service factory. */
-	private static JdoServiceFactory _serviceFactory;
+	private static JdoServiceFactory _serviceFactory = new JdoServiceFactory();
 
 	/**
 	 * Sets the factory.
@@ -38,9 +40,7 @@ public class JdoUtil {
 		if (_jdoService == null) {
 			synchronized (JdoUtil.class) {
 				if (_jdoService == null) {
-					_jdoService = _serviceFactory == null ? new JdoService()
-							: new JdoService(_serviceFactory);
-					_serviceFactory = null;
+					_jdoService = new JdoService(_serviceFactory);
 				}
 			}
 		}
@@ -62,8 +62,57 @@ public class JdoUtil {
 	 *
 	 * @return the jdo query service
 	 */
-	public static JdoQueryService loader() {
-		return new JdoQueryService();
+	public static JdoLoader loader() {
+		return service().loader();
+	}
+
+	/**
+	 * Loader.
+	 *
+	 * @param cache
+	 *            the cache
+	 * @return the jdo loader
+	 */
+	public static JdoLoader loader(boolean cache) {
+		return service().loader(cache);
+	}
+
+	/**
+	 * Saver.
+	 *
+	 * @return the jdo saver
+	 */
+	public static JdoSaver saver() {
+		return service().saver();
+	}
+
+	/**
+	 * Saver.
+	 *
+	 * @param cache the cache
+	 * @return the jdo saver
+	 */
+	public static JdoSaver saver(boolean cache) {
+		return service().saver(cache);
+	}
+
+	/**
+	 * Deleter.
+	 *
+	 * @return the jdo deleter
+	 */
+	public static JdoDeleter deleter() {
+		return service().deleter();
+	}
+
+	/**
+	 * Deleter.
+	 *
+	 * @param cache the cache
+	 * @return the jdo deleter
+	 */
+	public static JdoDeleter deleter(boolean cache) {
+		return service().deleter(cache);
 	}
 
 	/**

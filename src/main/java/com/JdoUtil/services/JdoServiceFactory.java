@@ -12,8 +12,12 @@ import javax.jdo.PersistenceManagerFactory;
  */
 public class JdoServiceFactory {
 
+	public static final String MEMCACHE_NAMESPACE = "JdoUtilCache";
+
 	/** The _pmf. */
-	private final PersistenceManagerFactory _pmf;
+	protected final PersistenceManagerFactory _pmf;
+
+	protected final MCacheService mcache = new MCacheService(MEMCACHE_NAMESPACE);
 
 	/**
 	 * Instantiates a new jdo service factory.
@@ -25,7 +29,8 @@ public class JdoServiceFactory {
 	/**
 	 * Instantiates a new jdo service factory.
 	 *
-	 * @param configName the config name
+	 * @param configName
+	 *            the config name
 	 */
 	public JdoServiceFactory(String configName) {
 		this._pmf = JDOHelper.getPersistenceManagerFactory(configName);
@@ -34,7 +39,8 @@ public class JdoServiceFactory {
 	/**
 	 * Instantiates a new jdo service factory.
 	 *
-	 * @param pmf the pmf
+	 * @param pmf
+	 *            the pmf
 	 */
 	public JdoServiceFactory(PersistenceManagerFactory pmf) {
 		this._pmf = pmf;
@@ -56,5 +62,9 @@ public class JdoServiceFactory {
 	 */
 	public PersistenceManager getPM() {
 		return _pmf.getPersistenceManager();
+	}
+
+	public MCacheService cacheService() {
+		return mcache;
 	}
 }

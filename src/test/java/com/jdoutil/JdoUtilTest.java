@@ -33,7 +33,7 @@ public class JdoUtilTest extends JdoUtilBaseTestCase {
 		Assert.assertNotNull(service.factory().getPMF());
 	}
 
-	public void testJdoServiceWithCustomFactory(){
+	public void testJdoServiceWithCustomFactory() throws Exception {
 
 		JdoUtil.setFactory(new JdoServiceFactory());
 		JdoService service = JdoUtil.service();
@@ -41,5 +41,6 @@ public class JdoUtilTest extends JdoUtilBaseTestCase {
 		Assert.assertNotNull(service);
 		Assert.assertNotNull(service.factory());
 		Assert.assertNotNull(service.factory().getPMF());
+
 	}
 }
