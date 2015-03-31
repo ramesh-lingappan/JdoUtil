@@ -1,5 +1,5 @@
 # Jdo Utility Wrapper
-An simple wrapper for AppEngine datastore operations using JDO. Its not built in any intention to replace anything, writing some many line repeatedly for soame operations is really pain, So this library just wraps most frequently used jdo operations in simple one line method call. Use it if you find it useful.
+An simple wrapper for AppEngine datastore operations using JDO. Its not built in any intention to replace anything, writing some many line repeatedly for same operations is really pain, So this library just wraps most frequently used jdo operations in simple one line method call. Use it if you find it useful.
 
 ##### Note 
 if you are starting new project, please use [Objectify](https://code.google.com/p/objectify-appengine/). Its really awesome and has lot of features, JdoUtil is build for existing appengine jdo users.
@@ -31,7 +31,7 @@ if you dont specify an PersistenceManagerFactory, a default PersistenceManagerFa
 
 
 ```Java
-// you dont need to create this if you are default like above
+// you dont need to create this if you are using defaults like above
 JdoServiceFactory factory = new JdoServiceFactory();
 ```
 
