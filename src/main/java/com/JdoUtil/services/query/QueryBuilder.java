@@ -248,11 +248,13 @@ public class QueryBuilder<T> {
 		if (!hasFilters())
 			return null;
 		String builder = query.toString();
-		if (hasValidRange())
-			builder += " RANGE " + startRange + "," + endRange;
-
+	
 		if (hasSortOrder())
 			builder += " ORDER BY " + sortOrder;
+		
+		if (hasValidRange())
+			builder += " RANGE " + startRange + "," + endRange;
+		
 		return clearSpace(builder);
 	}
 
