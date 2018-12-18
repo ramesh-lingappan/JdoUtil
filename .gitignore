@@ -92,7 +92,12 @@ release.properties
 dependency-reduced-pom.xml
 buildNumber.properties
 /target/
-/target/
-/target/
-/target/
-/target/
+.idea/
+build.gradle
+gradle/
+gradlew
+gradlew.bat
+settings.gradle
+src/main/main.iml
+src/main/resources/
+src/test/test.iml

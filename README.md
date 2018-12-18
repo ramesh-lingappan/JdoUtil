@@ -14,7 +14,7 @@ if you are starting new project, please use [Objectify](https://code.google.com/
 
 ## How to Download ?
 
-- currently you can manually download the jar file here [Download Jar File](https://github.com/ramesh-dev/JdoUtil/tree/master/src/dist)
+- currently you can manually download the jar file here [Download Jar File](https://github.com/ramesh-dev/JdoUtil/tree/master/release)
 - will update to maven central repo soon!
 
 
